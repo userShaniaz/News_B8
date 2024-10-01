@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Топ новостей</title>
+</head>
+<body>
+    <h1>Топ 10 новостей по просмотрам</h1>
+    <ul>
+        {% for news in news %}
+            <li>
+                <a href="{% url 'news' news.id %}">{{ news.title }}</a>
+                ({{ news.views }} просмотров)
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

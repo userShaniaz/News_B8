@@ -1,0 +1,37 @@
+{% extends "core/base.html" %}
+{% block title %}Create news{% endblock title %}
+    <h1>Создать новость</h1>
+    <form method="post">
+      {% csrf_token %}
+      <div>
+        <label for="title">Заголовок:</label>
+        <input type="text" id="title" name="title" required>
+      </div>
+      <div>
+        <label for="content">Содержание:</label>
+        <textarea id="content" name="content" required></textarea>
+      </div>
+      <div>
+        <label for="category">Категория:</label>
+        <select id="category" name="category">
+          {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+        <label for="author">Автор:</label>
+        <select id="author" name="author">
+          {% for author in authors %}
+            <option value="{{ author.id }}">{{ author.name }}</option>
+          {% endfor %}
+        </select>
+        <label for="publication_date">Дата публикации:</label>
+        <input type="date" name="publication_date" id="publication_date">
+        
+        <label for="publication_time">Время публикации:</label>
+        <input type="time" name="publication_time" id="publication_time">
+      </div>
+      <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+{% endblock  %}

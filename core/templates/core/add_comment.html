@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить комментарий</title>
+</head>
+<body>
+    <h2>Добавить комментарий к новости: {{ news.title }}</h2>
+    <form method="post">
+      {% csrf_token %}
+      <div>
+        <label for="content">Комментарий:</label>
+        <textarea id="content" name="content" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+</body>
+</html>

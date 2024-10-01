@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+{% load custom_tags %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+    <p>{% greet_user 'User' %}</p>
+
+    <nav>
+        <a href="{% url 'index' %}">Главная страница</a>
+        <a href="{% url 'create_news' %}">Добавить новость</a>
+    
+    </nav>
+
+    <main>
+
+        <div>
+            <p>Количество новостей: {{ news_list|length }}</p>
+            {% if news_list %}
+                {% for news in news_list %}
+                
+                <div>
+                    <h2>{{ news.title }}</h2>       
+                    <p>{{ news.content|truncatewords:20 }}</p>
+                    <p>Категория: {{ news.category.name }}</p>
+                    <p>Автор: {{ news.author.name }}</p>
+                    <p>Дата публикации: {{ news.created_at|date:"d M Y" }}</p>
+                    <p>Просмотры: {{ news.views }}</p>
+                    <a href="{% url 'update_news' news.id %}">Редактировать</a>
+                    <a href="{% url 'delete_news' news.id %}">Удалить</a>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>новостей пока нет</p>
+            {% endif %}
+                </div>
+        <p>Текущая дата и время: {% now "d M Y H:i" %}</p>
+    </main>
+{% endblock %}
